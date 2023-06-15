@@ -76,6 +76,7 @@ main {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .main {
@@ -90,11 +91,10 @@ main {
 
 .items {
   
-  width: 750px;
+  max-width: 850px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  
 }
 
 .caption-link {
@@ -152,6 +152,8 @@ main {
   background-color: #f1c40f;
   padding: 10px;
   color: #2f3640;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 .desc-price {
