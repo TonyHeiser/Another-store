@@ -1,0 +1,2 @@
+var cardList = document.querySelector(".products")
+console.log(cardList.children) вывод дочерних элементов cardList
