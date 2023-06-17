@@ -74,7 +74,7 @@ nav.menu-main {
 main {
   
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -154,6 +154,8 @@ main {
   color: #2f3640;
   margin-left: 30px;
   margin-bottom: 20px;
+  min-width: 150px;
+  min-height: 250px;
 }
 
 .desc-price {
@@ -179,7 +181,7 @@ main {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 .button-49:after {
@@ -261,6 +263,26 @@ main {
     height: 40px;
     line-height: 44px;
   }
+}
+
+.item--available::after {
+  content: "In stock 👍";
+  background-color: #2f3640;
+  color: #4cd137;
+  padding: 5px;
+  border-radius: 5%;
+}
+
+.item--unavailable {
+  filter: grayscale(1) opacity(0.7);
+}
+
+.item--unavailable::after {
+  content: "Out of stock 👎";
+  background-color: #2f3640;
+  color: #ecf0f1;
+  padding: 5px;
+  border-radius: 5%;
 }
 
 .aside {
