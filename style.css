@@ -285,6 +285,33 @@ main {
   border-radius: 5%;
 }
 
+.item--special {
+  animation: change-color 1s infinite alternate-reverse ease-in-out;
+}
+
+.item--special::after {
+  content: "Special 🔥";
+  background-color: #2f3640;
+  color: #ecf0f1;
+  padding: 5px;
+  border-radius: 5%;
+}
+
+@keyframes change-color {
+  from {
+    background-color: #8e44ad;
+    color: #f1c40f;
+    transform: scale(1.0);
+  }
+  50% {
+    background-color: #f1c40f;
+  }
+  100% {
+    background-color: #00a8ff;
+    transform: scale(1.05);
+  }
+}
+
 .aside {
   background-color: #353b48;
   color: #f5f6fa;
