@@ -1,3 +1,35 @@
+var cardsData = [
+  {
+    isAvailable: true,
+    imgUrl: 'media/2Yw3FNZ5HSQ.jpg',
+    text: 'Pop4',
+    price: "$200",
+    isSpecial: false
+  },
+  {
+    isAvailable: false,
+    imgUrl: 'media/3e79d0c549bad2dde28057c338eae2a3.jpg',
+    text: 'Pop5',
+    price: "$1500",
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'media/pop-art-woman-with-candypill-on-the-gal-amar.jpg',
+    text: 'Pop6',
+    price: "$2500",
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'media/screen-shot-2014-09-25-at-10-22-22-pm-1024x1024.png',
+    text: 'Pop7',
+    price: "$4900",
+    isSpecial: true,
+    specialPrice: "$100"
+  }
+];
+
 function makeElement(tagName, className, text) {
   var element = document.createElement(tagName);
   element.classList.add(className);
@@ -22,28 +54,85 @@ function createCard(product) {
   listItem.appendChild(price)
 
   var availabilityClass = "item--available";
-  if (!productInfo.isAvailable) {
+  if (!product.isAvailable) {
     availabilityClass = "item--unavailable"
   }
   listItem.classList.add(availabilityClass)
+
+  if (product.isSpecial) {
+    listItem.classList.add("item--special");
+    var specialPrice = makeElement('button', 'button-49', product.specialPrice);
+    listItem.appendChild(specialPrice)
+  }
 
   return listItem;
 }
 
 var cardList = document.querySelector('.items');
-console.log(cardList.children);
 
-var productInfo = {
-  isAvailable: false,
-  imgUrl: "media/modern-pop.jpg",
-  text: "Pop4",
-  price: "$500",
-  isSpecial: false,
-  specialPrice: null,
+for (var i = 0; i < cardsData.length; i++) {
+  var cardItem = createCard(cardsData[i])
+  cardList.appendChild(cardItem)
 }
 
-var cardItem = createCard(productInfo);
-cardList.appendChild(cardItem);
+var popup = document.querySelector('.modal');
+var openPopupButton = document.querySelector(".button-open");
+var closePopupButton = popup.querySelector(".button-close");
+
+openPopupButton.addEventListener("click", function(evt) {
+  evt.preventDefault();
+
+  popup.classList.add("modal--show")
+});
+
+closePopupButton.addEventListener("click", function() {
+  popup.classList.remove("modal--show")
+});
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode == 27) {
+    popup.classList.remove('modal--show');
+  }
+});
+
+
+//^ Gallery
+
+var photos = [
+  'media/Lips.jpg',
+  'media/Marilyn.jpg',
+  'media/couple.jpg',
+  'media/6img.jpg',
+  'media/Black-white-red.jpg',
+  'media/green-bgc.jpg'
+];
+
+
+var thumbnails = document.querySelectorAll('.gallery__photo-preview');
+var fullPhoto = document.querySelector('.full-photo');
+
+var addThumbnailClickHandler = function (thumbnail, photo) {
+  thumbnail.addEventListener("click", function(){
+    fullPhoto.src = photo;
+  })
+}
+
+for (var i = 0; i < thumbnails.length; i++) {
+  addThumbnailClickHandler(thumbnails[i], photos[i])
+}
+
+
+// var productInfo = {
+//   isAvailable: true,
+//   imgUrl: "media/modern-pop.jpg",
+//   text: "Pop4",
+//   price: "$500",
+//   isSpecial: true,
+//   specialPrice: "$599",
+// }
+
+// var cardItem = createCard(productInfo);
+// cardList.appendChild(cardItem);
 // var listItem = document.createElement("div");
 // listItem.classList.add("item");
 // cardList.appendChild(listItem);
