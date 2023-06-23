@@ -1,3 +1,44 @@
+// var productInfo = {
+//   isAvailable: true,
+//   imgUrl: "media/modern-pop.jpg",
+//   text: "Pop4",
+//   price: "$500",
+//   isSpecial: true,
+//   specialPrice: "$599",
+// }
+
+// var cardItem = createCard(productInfo);
+// cardList.appendChild(cardItem);
+// var listItem = document.createElement("div");
+// listItem.classList.add("item");
+// cardList.appendChild(listItem);
+// console.log(cardList.children);
+
+// var title = document.createElement("h4");
+// title.classList.add("desc-text");
+// title.textContent = "Pop4";
+// listItem.appendChild(title);
+
+// var price = document.createElement("button");
+// price.classList.add("button-49")
+// price.textContent = "$300"
+// listItem.appendChild(price)
+
+// var listItem = makeElement("div", "item");
+// cardList.appendChild(listItem);
+
+// var picture = makeElement("img", "product__image");
+// picture.src = "media/modern-pop.jpg";
+// picture.alt = "Modern Pop";
+// listItem.appendChild(picture);
+
+// var title = makeElement("h4", "desc-text", "Pop4")
+// listItem.appendChild(title);
+
+// var price = makeElement("button", "button-49", "$300")
+// listItem.appendChild(price)
+
+
 var cardsData = [
   {
     isAvailable: true,
@@ -75,6 +116,9 @@ for (var i = 0; i < cardsData.length; i++) {
   cardList.appendChild(cardItem)
 }
 
+
+// ^Popup
+
 var popup = document.querySelector('.modal');
 var openPopupButton = document.querySelector(".button-open");
 var closePopupButton = popup.querySelector(".button-close");
@@ -122,42 +166,45 @@ for (var i = 0; i < thumbnails.length; i++) {
 }
 
 
-// var productInfo = {
-//   isAvailable: true,
-//   imgUrl: "media/modern-pop.jpg",
-//   text: "Pop4",
-//   price: "$500",
-//   isSpecial: true,
-//   specialPrice: "$599",
-// }
+// ~Checkbox
 
-// var cardItem = createCard(productInfo);
-// cardList.appendChild(cardItem);
-// var listItem = document.createElement("div");
-// listItem.classList.add("item");
-// cardList.appendChild(listItem);
-// console.log(cardList.children);
+var list = document.querySelector('.todo-list');
+// var items = list.querySelectorAll('.todo-list-item');
+var items = list.children;
+var emptyListMessage = document.querySelector(".empty-tasks");
+var newItemForm = document.querySelector('.add-form');
+var newItemTitle = newItemForm.querySelector(".add-form-input");
+var taskTemplate = document.querySelector("#task-template").content;
+var newItemTemplate = taskTemplate.querySelector(".todo-list-item");
 
-// var title = document.createElement("h4");
-// title.classList.add("desc-text");
-// title.textContent = "Pop4";
-// listItem.appendChild(title);
+var toggleEmptyListMessage = function () {
+  if (items.length === 0) {
+    emptyListMessage.classList.remove("hidden")
+  } else {
+    emptyListMessage.classList.add("hidden")  
+  }
+};
 
-// var price = document.createElement("button");
-// price.classList.add("button-49")
-// price.textContent = "$300"
-// listItem.appendChild(price)
+var addCheckHandler = function (item) {
+  var checkbox = item.querySelector('.todo-list-input');
+  checkbox.addEventListener('change', function () {
+    item.remove();
+    toggleEmptyListMessage();
+  });
+};
 
-// var listItem = makeElement("div", "item");
-// cardList.appendChild(listItem);
+for (var i = 0; i < items.length; i++) {
+  addCheckHandler(items[i])
+};
 
-// var picture = makeElement("img", "product__image");
-// picture.src = "media/modern-pop.jpg";
-// picture.alt = "Modern Pop";
-// listItem.appendChild(picture);
-
-// var title = makeElement("h4", "desc-text", "Pop4")
-// listItem.appendChild(title);
-
-// var price = makeElement("button", "button-49", "$300")
-// listItem.appendChild(price)
+newItemForm.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  var taskText = newItemTitle.value;
+  var task = newItemTemplate.cloneNode(true);
+  var taskDescription = task.querySelector("span");
+  taskDescription.textContent = taskText;
+  addCheckHandler(task)
+  list.appendChild(task);
+  toggleEmptyListMessage();
+  newItemTitle.value = "";
+});

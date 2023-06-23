@@ -103,6 +103,42 @@
         </p>
       </section>
     </div>
+    <div class="todo-list-container">
+      <h1 class="todo__visually-hidden">Task List</h1>
+      <ul class="todo-list">
+        <li class="todo-list-item">
+          <label>
+            <input type="checkbox" class="todo-list-input">
+            <span>Feed Cat</span>
+          </label>
+        </li>
+        <li class="todo-list-item">
+          <label>
+            <input type="checkbox" class="todo-list-input">
+            <span>Escape from the goverment</span>
+          </label>
+        </li>
+        <li class="todo-list-item">
+          <label>
+            <input type="checkbox" class="todo-list-input">
+            <span>Runaway</span>
+          </label>
+        </li>
+      </ul>
+      <p class="empty-tasks hidden">All Tasks is done. There's no new tasks.</p>
+      <form action="" class="add-form" method="post">
+        <input class="add-form-input" type="text" aria-label="Task desctiption" placeholder="Type something" required>
+        <button class="add-form-button" type="submit">Add Task</button>
+      </form>
+      <template id="task-template">
+        <li class="todo-list-item">
+          <label>
+            <input type="checkbox" class="todo-list-input">
+            <span></span>
+          </label>
+        </li>
+      </template>
+    </div>
   </main>
   
   <footer class="footer">
